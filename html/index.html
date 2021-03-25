@@ -1,0 +1,42 @@
+<!doctype html>
+<script>
+
+
+	function getUserInput()
+	{
+		var username = document.getElementById("txtUsername").value;
+		var password = document.getElementById("txtPassword").value;
+		//alert(username);
+		getUserCredential(username, password);
+	}
+
+	function getUserCredential(username, password)
+	{
+		let request = new XMLHttpRequest();
+		request.open("GET", "http://localhost:8001/users/aj123");
+		request.send();
+		request.onload = () => {
+			console.log(request);
+			if (request.status ==200) {
+				console.log(request.response);
+			}else{
+				console.log("Error");
+			}
+		
+		}
+	}
+</script>
+
+
+<html lang="en">
+	<head>
+		<title>Hello World</title>
+	</head>
+
+	<body>
+		<h1>Hello, world!</h1>
+		<input type="text" id="txtUsername" />
+		<input type="text" id="txtPassword"/>
+		<input type="submit" onclick="getUserInput()"/>
+	</body>
+</html>
