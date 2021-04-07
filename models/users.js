@@ -4,7 +4,7 @@ const getUser = app => {
 
 	app.get('/users/:id', (request, response) => {
         const id = request.params.id;
-        connection.query('SELECT * FROM tblUsers WHERE UeserName=?', id, (error, results, fields) => {
+        connection.query('SELECT * FROM tblUsers WHERE UserName = "aj123" and Password=?', id, (error, results, fields) => {
         if (error) throw error;
 	response.send(results);
 
