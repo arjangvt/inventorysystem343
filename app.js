@@ -12,6 +12,7 @@ const express_port = 8001;
 const server =  http.createServer();
 const app = express();
 
+app.use(express.static('public'));
 
 server.on('request',(request, response) => {
 	console.log(`URL: ${request.url}`);
@@ -20,6 +21,36 @@ server.on('request',(request, response) => {
                 'Content-Type': 'text/html'
         });
 
+	if (request.url == "/")
+	{
+
+		fs.readFile('./html/index.html', null, function (error, data){
+                if (error) {
+                        response.writeHead(404);
+                        response.write('Whoops! File not found!');
+                } else {
+                        response.write(data);
+
+                }
+                response.end();
+	        });
+
+	}
+	else
+	{
+		fs.readFile('./html/main.html', null, function(error, data){
+			if (error) {
+				response.writeHead(404);
+				response.write("This is for main page!");
+			} else {
+				response.write(data);
+			}
+			response.end();
+
+		});
+		//response.write(request.url);
+	}
+	/*
         fs.readFile('./html/index.html', null, function (error, data){
                 if (error) {
                         response.writeHead(404);
@@ -29,7 +60,7 @@ server.on('request',(request, response) => {
 
                 }
                 response.end();
-        });
+        }); */
 
 });
 

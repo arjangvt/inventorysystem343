@@ -1,5 +1,8 @@
 <!doctype html>
 <script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+</script>
+<script>
 
 
 	function getUserInput()
@@ -23,7 +26,10 @@
 				{
 					pw = data[0].Password;
 					if (pw == password)
-						res.redirect('http://localhost:8000/html/main.html');
+					{
+						alert("I am here");
+						location.replace('http://localhost:8000/html/main.html');
+					}
 				}
 				else
 					document.getElementById("lblMessage").innerHTML = "The password is incorrect!";
