@@ -48,19 +48,6 @@ server.on('request',(request, response) => {
 			response.end();
 
 		});
-		//response.write(request.url);
-	}
-	/*
-        fs.readFile('./html/index.html', null, function (error, data){
-                if (error) {
-                        response.writeHead(404);
-                        response.write('Whoops! File not found!');
-                } else {
-                        response.write(data);
-
-                }
-                response.end();
-        }); */
 
 });
 
