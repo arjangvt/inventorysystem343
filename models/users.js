@@ -1,17 +1,19 @@
-const connection = require("../config/connection");
-
-const getUser = app => {
-
-	app.get('/users/:id', (request, response) => {
-        const id = request.params.id;
-        connection.query('SELECT * FROM tblUsers WHERE UserName = "aj123" and Password=?', id, (error, results, fields) => {
-        if (error) throw error;
-	response.send(results);
-
-        });
-
-   });
-};
+var connection = require("../config/connection");
+var express = require('express');
+var users = express.Router();
 
 
-module.exports = getUser;
+users.get('/users', function(req, res){
+	console.log("/users/");
+	//var id = req.params.id;
+	//connection.query('SELECT * FROM tblUsers WHERE UserName = "aj123" and Password=?', id, (error, results, fields) => {
+        //if (error) throw error;
+        //res.send(results);
+
+        //});
+
+})
+
+
+module.exports = users;
+
