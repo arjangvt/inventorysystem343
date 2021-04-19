@@ -1,0 +1,49 @@
+<!doctype html>
+<script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+</script>
+<script>
+	function load_product()
+	{
+		let request = new XMLHttpRequest();
+		url = "http://localhost:8000/products";
+		request.open("GET", url);
+		request.send();
+		request.onload = () => {
+			// Do something here
+			if (request.status == 200) {
+
+                                var data = JSON.parse(request.response);
+
+                                if (data[0] != null)
+                                {
+                                }
+                                else
+				{
+                                        //document.getElementById("lblMessage").innerHTML = "The password is incorrect!";
+				}
+                        }
+			else
+			{
+                                //alert("Error");
+                                //console.log("Error");
+                        }
+
+		}
+
+
+	}
+
+</script>
+
+
+<html lang="en">
+	<head>
+		<title>Product Management</title>
+	</head>
+
+	<body onload="load_product()">
+		<h1>Product Management</h1>
+	</body>
+	<br>
+</html>

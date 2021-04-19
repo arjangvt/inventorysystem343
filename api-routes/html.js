@@ -19,7 +19,19 @@ router.get('/', function (req, res) {
 
 })
 
+router.get('/product', function (req, res) {
+	console.log("product list");
+	fs.readFile('./html/product.html', null, function (error, data) {
+		if (error) {
+			res.writeHead(404);
+			res.write('');
+		} else {
+			res.write(data);
+		}
+		res.end();
 
+	});
+})
 
 module.exports = router;
 
