@@ -3,6 +3,30 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
 </script>
 <script>
+	function tableCreate(data) 
+	{
+		var body = document.getElementsByTagName('body')[0];
+ 		var tbl = document.createElement('table');
+		tbl.style.width = '100%';
+		tbl.setAttribute('border', '1');
+		var tbdy = document.createElement('tbody');
+		for (var i = 0; i < data.length; i++) 
+		{      //rows
+			var tr = document.createElement('tr');
+			var row_content = data[i];
+				  for (var key of Object.keys(data[i]))
+				  {
+					  var td = document.createElement('td');
+        				  td.appendChild(document.createTextNode(data[i][key]));
+        				  //td.setAttribute('rowSpan', row_content;
+        				  tr.appendChild(td);
+				  }
+    			tbdy.appendChild(tr);
+  		}
+		tbl.appendChild(tbdy);
+  		body.appendChild(tbl)
+	}
+
 	function load_product()
 	{
 		let request = new XMLHttpRequest();
@@ -15,8 +39,11 @@
 
                                 var data = JSON.parse(request.response);
 
-                                if (data[0] != null)
+				if (data.length > 0)
                                 {
+					tableCreate(data);
+					//alert(data.length);
+
                                 }
                                 else
 				{
@@ -26,14 +53,18 @@
 			else
 			{
                                 //alert("Error");
-                                //console.log("Error");
+                                console.log("Error");
                         }
 
 		}
 
 
 	}
-
+	
+	function getProductInfo()
+	{
+		alert ("I am in ProductInfo");
+	}
 </script>
 
 
@@ -44,6 +75,17 @@
 
 	<body onload="load_product()">
 		<h1>Product Management</h1>
+
+		<label id="name"> Product Name </label>
+                <input type="text"  id="txtProductName"/>
+		<label id="model"> Product Model </label>
+		<input type="text" id="txtModel"/>
+		<label id="serial">Product Serial Number</label>
+		<input type="text" id="txtSerial"/>
+                <input type="submit" onclick="getProductInfo()"/>
+		<br><br>
+
+
 	</body>
 	<br>
 </html>
