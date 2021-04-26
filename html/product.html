@@ -1,6 +1,6 @@
 <!doctype html>
 <script>
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+	//src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
 </script>
 <script>
 	function tableCreate(data) 
@@ -34,7 +34,6 @@
 		request.open("GET", url);
 		request.send();
 		request.onload = () => {
-			// Do something here
 			if (request.status == 200) {
 
                                 var data = JSON.parse(request.response);
@@ -42,7 +41,6 @@
 				if (data.length > 0)
                                 {
 					tableCreate(data);
-					//alert(data.length);
 
                                 }
                                 else
@@ -63,7 +61,47 @@
 	
 	function getProductInfo()
 	{
-		alert ("I am in ProductInfo");
+		var pname = document.getElementById("txtProductName").value;
+		var model = document.getElementById("txtModel").value;
+		var serial = document.getElementById("txtSerial").value;
+
+		let request = new XMLHttpRequest();
+                url = "http://localhost:8000/products/addproduct/" + pname + "/" + model + "/" + serial;
+                request.open("GET", url);
+                request.send();
+                request.onload = () => {
+                        if (request.status == 200) {
+						
+				 var body = document.getElementsByTagName('body')[0];
+                		 var tbl =  document.getElementsByTagName('table')[0];
+				 var tbdy = document.getElementsByTagName('tbody')[0];
+				 
+				 var tr = document.createElement('tr');
+				  
+				 var td = document.createElement('td');
+                                 td.appendChild(document.createTextNode(" "));
+                                 tr.appendChild(td);
+
+
+				 var td = document.createElement('td');
+                                 td.appendChild(document.createTextNode(pname));
+                                 tr.appendChild(td);
+ 					
+			  	 var td = document.createElement('td');
+                                 td.appendChild(document.createTextNode(model));
+                                 tr.appendChild(td);
+
+			         var td = document.createElement('td');
+                                 td.appendChild(document.createTextNode(serial));
+                                 tr.appendChild(td);
+
+				 tbdy.appendChild(tr);
+                		 tbl.appendChild(tbdy);
+                		 body.appendChild(tbl)
+
+                        }
+                
+                }
 	}
 </script>
 

@@ -15,5 +15,21 @@ router.get('/', function(req, res){
 })
 
 
+router.get('/addproduct/:pname/:model/:serial', function(req, res){
+	console.log("/addproduct");
+	var name = req.params.pname;
+	var model = req.params.model;
+	var serial = req.params.serial;
+
+	connection.query('INSERT INTO tblProducts (name, model, serial_number) VALUES ("' + name + '","' + model + '","' + serial + '")', (error, results, fields) => {
+	
+	if (error) throw error;
+	res.send(results);
+	
+	});
+
+})
+
+
 module.exports = router;
 
